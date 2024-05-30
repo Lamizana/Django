@@ -1,4 +1,4 @@
-# Django
+# Django (sans Docker)
 
 --------------------------------------------------------------
 ### Mettre en place un projet.
