@@ -1,0 +1,15 @@
+{% extends "journaux_apprentissage/base.html" %}
+
+{% block content %}
+
+    <p><a href="{% url 'journaux_apprentissage:topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>Modifier l'entrée :</p>
+    
+    <form action="{% url 'journaux_apprentissage:edit_entry' entry.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Enregistrer les modifications.</button>
+    </form>
+
+{% endblock content %}
