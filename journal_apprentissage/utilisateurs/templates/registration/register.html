@@ -1,0 +1,14 @@
+{% extends "journaux_apprentissage/base.html" %}
+
+{% block content %}
+
+<form method="post" action="{% url 'utilisateurs:register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">S'inscrire</button>
+    <input type="hidden" name="next"
+        value="{% url 'journaux_apprentissage:index' %}" />
+</form>
+
+{% endblock content %}

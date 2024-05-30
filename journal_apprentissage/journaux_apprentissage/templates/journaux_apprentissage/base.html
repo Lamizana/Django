@@ -1,6 +1,13 @@
 <p>
     <a href="{% url 'journaux_apprentissage:index' %}" >Journal d'apprentissage</a> -
-    <a href="{% url 'journaux_apprentissage:topics' %}" >Sujet</a>
+    <a href="{% url 'journaux_apprentissage:topics' %}" >Sujet</a> -
+        {% if user.is_authenticated %}
+            Bonjour {{ user.username }}.
+            <a href="{% url 'utilisateurs:logout' %}">Déconnexion</a>
+        {% else %}
+            <a href="{% url 'utilisateurs:register' %}">S'inscrire</a>
+            <a href="{% url 'utilisateurs:login' %}">Se connecter</a>
+        {% endif %}
 </p>
 
 {% block content %}{% endblock content %}

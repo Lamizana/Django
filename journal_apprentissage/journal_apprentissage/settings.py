@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Mes applications.
     'journaux_apprentissage',
+    'utilisateurs',
 
     # Applications Django par default.
     'django.contrib.admin',
@@ -125,3 +126,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Mes parametres.
+LOGIN_URL = 'utilisateurs:login'
