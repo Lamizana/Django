@@ -76,3 +76,10 @@ connecté: Vive les templates et gabarits !
 ```python
 topics = Topic.objects.filter(owner=request.user).order_by('date_added')
 ```
+
+
+### Application Django Bootstrap.
+
+```bash
+$ pip install django-bootstrap4
+```

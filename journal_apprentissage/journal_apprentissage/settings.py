@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'journaux_apprentissage',
     'utilisateurs',
 
+    # Application tierces.
+    'bootstrap4',
     # Applications Django par default.
     'django.contrib.admin',
     'django.contrib.auth',

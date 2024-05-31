@@ -1,13 +1,73 @@
-<p>
-    <a href="{% url 'journaux_apprentissage:index' %}" >Journal d'apprentissage</a> -
-    <a href="{% url 'journaux_apprentissage:topics' %}" >Sujet</a> -
-        {% if user.is_authenticated %}
-            Bonjour {{ user.username }}.
-            <a href="{% url 'utilisateurs:logout' %}">Déconnexion</a>
-        {% else %}
-            <a href="{% url 'utilisateurs:register' %}">S'inscrire</a>
-            <a href="{% url 'utilisateurs:login' %}">Se connecter</a>
-        {% endif %}
-</p>
 
-{% block content %}{% endblock content %}
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name"viewport" content="width=device-width, 
+        initial-scale=1, shrink-to-fit=no">
+    <title>Journal d'apprentissage</title> 
+    
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-md navbar light bg-light mb-4 border">
+
+    <a class="navbar-brand" href="{% url 'journaux_apprentissage:index' %}">
+        Journal d'apprentissage</a>
+
+    <button class="navbar-toogler" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toogle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" 
+                    href="{% url 'journaux_apprentissage:topics' %}">Sujet</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="navbar-text">Bonjour {{ user.username }}.</span>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'utilisateurs:logout' %}">
+                        {% csrf_token %}
+                        <button name="submit" class="btn btn-primary ">Déconnexion</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" 
+                    href="{% url 'utilisateurs:register' %}">S'inscrire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" 
+                    href="{% url 'utilisateurs:login' %}">Se connecter</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    </nav>
+
+    <main role="main" class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}{% endblock page_header %}
+        </div>
+
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
+
+</body>

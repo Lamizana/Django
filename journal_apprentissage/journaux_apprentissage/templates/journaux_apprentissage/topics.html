@@ -1,17 +1,23 @@
 {% extends "journaux_apprentissage/base.html" %}
 
+
+{% block page_header %}
+    <h1>Sujets.</h1>
+{% endblock page_header %}
+
 {% block content %}
-    <p>Sujets.</p>
+
     <ul>
         {% for topic in topics %}
-            <li>
+            <li><h3>
                 <a href="{% url 'journaux_apprentissage:topic' topic.id %}">{{ topic }}</a>
-            </li>
+            </h3></li>
         {% empty %}
-            <li>Aucun sujet n'a encore été ajouter.</li>
+            <li><h3>Aucun sujet n'a encore été ajouter.</h3></li>
         {% endfor %}
     </ul>
 
-    <a href="{% url 'journaux_apprentissage:new_topic' %}"> Ajouter un nouveau sujet</a>
+    <h3><a href="{% url 'journaux_apprentissage:new_topic' %}">
+        Ajouter un nouveau sujet</a></h3>
     
 {% endblock content %}

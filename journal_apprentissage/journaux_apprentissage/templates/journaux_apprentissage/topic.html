@@ -1,24 +1,32 @@
 {% extends "journaux_apprentissage/base.html" %}
 
+
+{% block page_header %}
+    <h3>{{ topic }}</h3>
+{% endblock page_header %}
+
+
 {% block content %}
 
-    <p>Sujet: {{ topic }}</p>
-
-    <p>Entrées :</p>
     <p>
-        <a href="{% url 'journaux_apprentissage:new_entry' topic.id %}">Ajouter une nouvelle entrée</a>
+        <a href="{% url 'journaux_apprentissage:new_entry' topic.id %}">
+            Ajouter une nouvelle entrée</a>
     </p>
 
-    <ul>
     {% for entry in entries %}
-        <li>
-            <p>{{ entry.date_added|date:'d F Y, H:i' }}</p>
-            <p>{{ entry.text|linebreaks }}</p>
-            <p><a href="{% url 'journaux_apprentissage:edit_entry' entry.id %}">Modifier l'entrée</a></p>
-        </li>
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'d F Y, H:i' }}
+                <small><a href="{% url 'journaux_apprentissage:edit_entry' entry.id %}">
+                    Modifier l'entrée</a></small>
+            </h4>
+            <div class="card-body">
+                {{ entry.text|linebreaks }}
+            </div>
+        </div>
     {% empty %}
-        <li>Aucune entrée n'a encore été ajouté à ce sujet.</li>
+        <p>Aucune entrée n'a encore été ajouté à ce sujet.</p>
     {% endfor %}
-    </ul>
+
 
 {% endblock content %}
